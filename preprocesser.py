@@ -38,8 +38,9 @@ def preprocess(train_path, validation_path, test_path, emotion_labels, batch_siz
     return train_batches, validation_batches, test_batches
 
 # Creates an augmented dataset rotating, shifting or zooming initial images
-# At the start of every epoch, transformations are applied to all the images with random parameters in the specified range.
-# At every epoch, augmentation is applied again and again, thus due to the random parameters, unique images are generated.
+# This way one epoch does never look the same as the epoch before.
+# The augmentation gets randomly applied to all images in one batch/epoch.
+# So in fact, we do have more images then before.
 def augmentation():
     return  ImageDataGenerator(
                 rotation_range=10,
