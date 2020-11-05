@@ -1,6 +1,5 @@
 # Keras Libraries
 from keras.preprocessing.image import ImageDataGenerator
-from keras.applications import vgg16
 # Plotting libraries
 import matplotlib.pyplot as plt
 
@@ -19,13 +18,13 @@ def preprocess(train_path, validation_path, test_path, emotion_labels, batch_siz
     # preprocessing for each path
 
     print('* preprocessing train_batches...')
-    train_batches = augmentation().flow_from_directory(directory=train_path, target_size=(96,96), classes=emotion_labels, batch_size=batch_size, color_mode='grayscale')
+    train_batches = augmentation().flow_from_directory(directory=train_path, target_size=(224,224), classes=emotion_labels, batch_size=batch_size)
 
     print('* preprocessing validation_batches...')
-    validation_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=validation_path, target_size=(96,96), classes=emotion_labels, batch_size=batch_size, color_mode='grayscale')
+    validation_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=validation_path, target_size=(224,224), classes=emotion_labels, batch_size=batch_size)
 
     print('* preprocessing test_batches...')
-    test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path, target_size=(96,96), classes=emotion_labels, batch_size=1, color_mode='grayscale')
+    test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path, target_size=(224,224), classes=emotion_labels, batch_size=1)
     print('\n')
     print('* batching train data...')
     imgs, labels = next(train_batches)

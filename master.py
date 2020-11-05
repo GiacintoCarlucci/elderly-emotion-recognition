@@ -15,9 +15,9 @@ train_path = 'data/emotions/train'
 validation_path = 'data/emotions/validation'
 test_path = 'data/emotions/test'
 
-input_shape=(96,96,1)
+input_shape=(224,224,3)
 
-epochs = 50
+epochs = 15
 batch_size = 10
 
 
@@ -44,6 +44,6 @@ activation_model = Model(inputs=model.input, outputs=layer_outputs)
 imgs, labels = next(test_batches)
 plt.imshow(imgs[0]);
 activations = activation_model.predict(imgs)
-display_activation(activations, 4, 8, 1)
+display_activation(activations, 8, 8, 10)
 # display_activation(activations, 8, 8, 4)
 # display_activation(activations, 8, 16, 6)
