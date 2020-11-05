@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
-
+from keras.models import Model
 
 def get_x_y(model,batches):
     # Predicted values
@@ -70,3 +70,13 @@ def plot_confusion_matrix(model,validation_batches):
     plt.show()
 
     print('\n--- DONE ---\n')
+
+def display_activation(activations, row_size, col_size, act_index):
+    activation = activations[act_index]
+    activation_index=0
+    fig, ax = plt.subplots(row_size, col_size, figsize=(row_size*2.5,col_size*1.5))
+    for row in range(0,row_size):
+        for col in range(0,col_size):
+            ax[row][col].imshow(activation[0, :, :, activation_index], cmap='gray')
+            activation_index += 1
+    plt.show()
