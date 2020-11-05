@@ -25,7 +25,7 @@ def preprocess(train_path, validation_path, test_path, emotion_labels, batch_siz
     validation_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=validation_path, target_size=(96,96), classes=emotion_labels, batch_size=batch_size, color_mode='grayscale')
 
     print('* preprocessing test_batches...')
-    test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path, target_size=(96,96), classes=emotion_labels, batch_size=batch_size, shuffle=False, color_mode='grayscale')
+    test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path, target_size=(96,96), classes=emotion_labels, batch_size=1, color_mode='grayscale')
     print('\n')
     print('* batching train data...')
     imgs, labels = next(train_batches)
