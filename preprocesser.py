@@ -18,13 +18,13 @@ def preprocess(train_path, validation_path, test_path, emotion_labels, batch_siz
     # preprocessing for each path
 
     print('* preprocessing train_batches...')
-    train_batches = augmentation().flow_from_directory(directory=train_path, target_size=(224,224), classes=emotion_labels, batch_size=batch_size)
+    train_batches = augmentation().flow_from_directory(directory=train_path, target_size=(96,96), classes=emotion_labels, batch_size=batch_size,color_mode="grayscale",class_mode='categorical')
 
     print('* preprocessing validation_batches...')
-    validation_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=validation_path, target_size=(224,224), classes=emotion_labels, batch_size=batch_size)
+    validation_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=validation_path, target_size=(96,96), classes=emotion_labels, batch_size=batch_size, shuffle=False,color_mode="grayscale",class_mode='categorical')
 
     print('* preprocessing test_batches...')
-    test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path, target_size=(224,224), classes=emotion_labels, batch_size=1)
+    test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path, target_size=(96,96), classes=emotion_labels, batch_size=1,color_mode="grayscale",class_mode='categorical')
     print('\n')
     print('* batching train data...')
     imgs, labels = next(train_batches)
